@@ -1,0 +1,52 @@
+git clone https://github.com/embedded2016/phonebook
+
+gnome-open . 用圖形介面開啟當下的資料夾
+
+findName(): 用linklist去尋找lastName
+
+(in main.c)
+#define DICT_FILE "./dictionary/words.txt" 定義字典檔
+終端輸入man clock_gettime可看特定函式的說明
+clock_gettime()為相對高精準度的timer
+append()用來建立電話簿
+IMPL不是定義在main.c內, 而是定義在Makefile內(看-DIMPL, 其中-D是以Makefile的語法定義macro)
+(好處：不用在main.c內宣告)
+assert(): 括號內的敘述式若不成立(=NULL)則終止程式
+由assert(findName(input, e) && "Did you implement findName() in " IMPL "?"); 可看：
+當assert中的敘述是後面接&&"字串", 字串會隨assert=NULL時印出
+
+
+
+(vi 使用)
+:$ 跳套行尾
+:/ 搜尋
+TODO在vim中表示待修正的程式碼(會有螢光標示)
+
+(in phonebook_opt.c)
+函式return NULL： 與main.c中的assert有關
+
+
+make後會出現兩個執行檔, 分別為phonebook_orig和phonebook_opt(在cmd中直接輸入 ./執行檔名稱 就會執行)
+
+make run: 每兩秒程式就會更新一次(見Makefile中的watch指令)
+
+make plot: 會執行100次程式
+(其中gnuplat的script在./phonebook/scripts/runtime.gp內)
+
+make cache-test: 可用來觀察效能(透過perf)
+
+應該要只有一份main.c: 同一份main.c可以對應到多種不同的實作
+
+執行前記得先清空系統的cache
+
+(from Vivian L)
+觀察單一執行檔的效能
+./phonebook_orig & sudo perf top -p $!
+
+(切換到root帳號)
+sudo su
+
+在執行程式(phonebook_orig 和 phonebook_opt) 前，先清空 cache:
+$ echo 1 | sudo tee /proc/sys/vm/drop_caches
+
+
