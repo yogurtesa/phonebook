@@ -49,4 +49,10 @@ sudo su
 在執行程式(phonebook_orig 和 phonebook_opt) 前，先清空 cache:
 $ echo 1 | sudo tee /proc/sys/vm/drop_caches
 
+lscpu: 可看L1, L2, L3的大小
+sudo dmidecode -t cache 更清楚
+(之前用的vi /proc/cpuinfo對於cache的資訊比較不詳盡)
+http://dreamtails.pixnet.net/blog/post/27711971-%E6%9F%A5%E8%A9%A2linux%E4%B8%BB%E6%A9%9Fcpu,-ram%E8%88%87hdd%E7%A1%AC%E9%AB%94%E8%A6%8F%E6%A0%BC%E6%8C%87%E4%BB%A4%E7%AF%84%E4%BE%8B
+
+
 

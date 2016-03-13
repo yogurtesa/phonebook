@@ -4,7 +4,7 @@
 #include "phonebook_opt.h"
 
 /* FILL YOUR OWN IMPLEMENTATION HERE! */
-entry_simple *findName(char lastName[], entry_simple *pHead)
+entry *findName(char lastName[], entry *pHead)
 {
     while (pHead != NULL) {
         if (strcasecmp(lastName, pHead->lastName) == 0)
@@ -14,14 +14,21 @@ entry_simple *findName(char lastName[], entry_simple *pHead)
     return NULL;
 }
 
-entry_simple *append(char lastName[], entry_simple *e)
+entry *append(char lastName[], entry *e)
 {
-    e->pNext = (entry_simple *) malloc(sizeof(entry_simple));
-    e = e->pNext;
-    e->pEntry = (entry *) malloc(sizeof(entry));
-    strcpy(e->pEntry->lastName, lastName);
-    strcpy(e->lastName, lastName);
+/*  // Error
+    e = (entry *) malloc(sizeof(entry));
+	strcpy(e->lastName, lastName);
+    e->pDetail = (detail *) malloc(sizeof(detail));
     e->pNext = NULL;
+	e = e->pNext;
+*/
+
+	e->pNext = (entry *) malloc(sizeof(entry));
+	e = e->pNext;
+	strcpy(e->lastName, lastName);
+	e->pDetail = (detail *) malloc(sizeof(detail));
+	e->pNext = NULL;
 
     return e;
 }
