@@ -16,19 +16,19 @@ entry *findName(char lastName[], entry *pHead)
 
 entry *append(char lastName[], entry *e)
 {
-/*  // Error
-    e = (entry *) malloc(sizeof(entry));
-	strcpy(e->lastName, lastName);
+    /*  // Error
+        e = (entry *) malloc(sizeof(entry));
+    	strcpy(e->lastName, lastName);
+        e->pDetail = (detail *) malloc(sizeof(detail));
+        e->pNext = NULL;
+    	e = e->pNext;
+    */
+
+    e->pNext = (entry *) malloc(sizeof(entry));
+    e = e->pNext;
+    strcpy(e->lastName, lastName);
     e->pDetail = (detail *) malloc(sizeof(detail));
     e->pNext = NULL;
-	e = e->pNext;
-*/
-
-	e->pNext = (entry *) malloc(sizeof(entry));
-	e = e->pNext;
-	strcpy(e->lastName, lastName);
-	e->pDetail = (detail *) malloc(sizeof(detail));
-	e->pNext = NULL;
 
     return e;
 }

@@ -37,28 +37,28 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-	/* test */ 
-/*	entry *head = (entry *) malloc(sizeof(entry));
-	entry *t = head;
-	//head = (entry *) malloc(sizeof(entry));
-	//t = (entry *) malloc(sizeof(entry));
-	t->pNext = NULL;
+    /* test */
+    /*	entry *head = (entry *) malloc(sizeof(entry));
+    	entry *t = head;
+    	//head = (entry *) malloc(sizeof(entry));
+    	//t = (entry *) malloc(sizeof(entry));
+    	t->pNext = NULL;
 
-	//t = (entry *) malloc(sizeof(entry));
-	strcpy(t->lastName, "t1");
-	t->pDetail = (detail *) malloc(sizeof(detail));
-	//t->pNext = NULL;
-	//t = t->pNext;
+    	//t = (entry *) malloc(sizeof(entry));
+    	strcpy(t->lastName, "t1");
+    	t->pDetail = (detail *) malloc(sizeof(detail));
+    	//t->pNext = NULL;
+    	//t = t->pNext;
 
-	t->pNext = (entry *) malloc(sizeof(entry));
-	t = t->pNext;
-	strcpy(t->lastName, "t2");
-	t->pDetail = (detail *) malloc(sizeof(detail));
-	t->pNext = NULL;
-	//t = t->pNext;
+    	t->pNext = (entry *) malloc(sizeof(entry));
+    	t = t->pNext;
+    	strcpy(t->lastName, "t2");
+    	t->pDetail = (detail *) malloc(sizeof(detail));
+    	t->pNext = NULL;
+    	//t = t->pNext;
 
-	printf("%s\n%s\n", head->lastName, head->pNext->lastName);
-*/
+    	printf("%s\n%s\n", head->lastName, head->pNext->lastName);
+    */
 
     /* build the entry */
     entry *pHead, *e;
@@ -67,30 +67,30 @@ int main(int argc, char *argv[])
     e = pHead;
     e->pNext = NULL;
 
-	/* test */
-	strcpy(pHead->lastName, "what?");
+    /* test */
+    strcpy(pHead->lastName, "what?");
 
 #if defined(__GNUC__)
     __builtin___clear_cache((char *) pHead, (char *) pHead + sizeof(entry));
 #endif
 
-	/* test */
-	//strcpy(pHead->lastName, "haha");
+    /* test */
+    //strcpy(pHead->lastName, "haha");
 
     /* build the link list, and compute the execution time of function append() */
-  /*  clock_gettime(CLOCK_REALTIME, &start);
-    while (fgets(line, sizeof(line), fp)) {
-        while (line[i] != '\0') {
-            i++;
-        }
-        line[i - 1] = '\0';
-        i = 0;
-        e = append(line, e);
-    }
-    clock_gettime(CLOCK_REALTIME, &end);
-    cpu_time1 = diff_in_second(start, end);
-*/
-	bool firstRow = true;
+    /*  clock_gettime(CLOCK_REALTIME, &start);
+      while (fgets(line, sizeof(line), fp)) {
+          while (line[i] != '\0') {
+              i++;
+          }
+          line[i - 1] = '\0';
+          i = 0;
+          e = append(line, e);
+      }
+      clock_gettime(CLOCK_REALTIME, &end);
+      cpu_time1 = diff_in_second(start, end);
+    */
+    bool firstRow = true;
     clock_gettime(CLOCK_REALTIME, &start);
     while (fgets(line, sizeof(line), fp)) {
         while (line[i] != '\0') {
@@ -98,19 +98,18 @@ int main(int argc, char *argv[])
         }
         line[i - 1] = '\0';
         i = 0;
-		if(firstRow == true) {
-			strcpy(e->lastName, line);	
-			firstRow = false;
-		}
-		else {
-			e = append(line, e);
-		}
+        if(firstRow == true) {
+            strcpy(e->lastName, line);
+            firstRow = false;
+        } else {
+            e = append(line, e);
+        }
     }
     clock_gettime(CLOCK_REALTIME, &end);
     cpu_time1 = diff_in_second(start, end);
 
-	/* test */
-	printf("pHead:%s\npHead->pNext:%s\n", pHead->lastName, pHead->pNext->lastName);
+    /* test */
+    printf("pHead:%s\npHead->pNext:%s\n", pHead->lastName, pHead->pNext->lastName);
 
     /* close file as soon as possible */
     fclose(fp);
@@ -139,8 +138,8 @@ int main(int argc, char *argv[])
 #else
     output = fopen("orig.txt", "a");
 #endif
-	fprintf(output, "append() findName() %lf %lf\n", cpu_time1, cpu_time2);
-	fclose(output);
+    fprintf(output, "append() findName() %lf %lf\n", cpu_time1, cpu_time2);
+    fclose(output);
 
     printf("execution time of append() : %lf sec\n", cpu_time1);
     printf("execution time of findName() : %lf sec\n", cpu_time2);
@@ -152,14 +151,14 @@ int main(int argc, char *argv[])
         e = e->pNext;
         free(tmp);
 #if OPT == 1
-		free(tmp->pDetail);
+        free(tmp->pDetail);
 #endif
     }
     pHead = NULL;
     e = NULL;
     tmp = NULL;
 
-	//original version to free the link list
+    //original version to free the link list
     //if (pHead->pNext) free(pHead->pNext);
     //free(pHead);
 
